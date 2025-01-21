@@ -30270,8 +30270,10 @@ module.exports.getDefaultCommitSha = () => {
 }
 
 module.exports.getDefaultCompareCommitSha = () => {
-  core.info(`base: ${github.context.payload.pull_request.base.sha}`)
+  core.info(`eventName: ${github.context.eventName}`)
+  core.info(`payload: ${JSON.stringify(github.context.payload, null, 2)}`)
   if (github.context.eventName === 'pull_request') {
+    core.info(`base: ${github.context.payload.pull_request.base.sha}`)
     return github.context.payload.pull_request.base.sha
   }
   return github.context.payload.before // for push events
