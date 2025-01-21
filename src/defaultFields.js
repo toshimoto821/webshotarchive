@@ -6,13 +6,16 @@ module.exports.getDefaultCommitSha = () => {
   let commitSha = ''
   if (github.context.eventName === 'pull_request') {
     commitSha = github.context.payload.pull_request.head.sha
+    core.info(`commitSha: ${commitSha}`)
   } else if (github.context.eventName === 'push') {
     commitSha = github.context.payload.after
+    core.info(`commitShaPush: ${commitSha}`)
   }
   return commitSha
 }
 
 module.exports.getDefaultCompareCommitSha = () => {
+  core.info(`base: ${github.context.payload.pull_request.base.sha}`)
   if (github.context.eventName === 'pull_request') {
     return github.context.payload.pull_request.base.sha
   }
