@@ -138,6 +138,9 @@ async function run() {
     const commitSha = core.getInput('commitSha') || getDefaultCommitSha()
     const compareCommitSha =
       core.getInput('compareCommitSha') || getDefaultCompareCommitSha()
+
+    core.info(`compareCommitSha: ${compareCommitSha}`)
+
     const compareBranch = core.getInput('compareBranch') // deprecated
     const branchName = core.getInput('branchName') || getDefaultBranchName()
     const commentInput = core.getInput('comment') || getDefaultComment()
